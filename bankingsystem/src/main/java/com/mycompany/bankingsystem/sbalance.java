@@ -353,11 +353,15 @@ public class sbalance extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void depositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositActionPerformed
-        // TODO add your handling code here:
+        deposit userDash = new deposit(accId);
+        this.setVisible(false);
+        userDash.setVisible(true);
     }//GEN-LAST:event_depositActionPerformed
 
     private void withdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_withdrawActionPerformed
-        // TODO add your handling code here:
+        widthraw with = new widthraw(accId);
+        this.setVisible(false);
+        with.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_withdrawActionPerformed
 
     private void savingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savingsActionPerformed

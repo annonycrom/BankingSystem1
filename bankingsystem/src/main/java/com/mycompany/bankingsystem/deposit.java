@@ -72,8 +72,8 @@ public class deposit extends javax.swing.JFrame  {
         locbankBtn = new javax.swing.JButton();
         interbankBtn = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        confirmBtn = new javax.swing.JButton();
-        Savings = new javax.swing.JTextField();
+        Dconfirm = new javax.swing.JButton();
+        deposit = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -278,18 +278,23 @@ public class deposit extends javax.swing.JFrame  {
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel3.setPreferredSize(new java.awt.Dimension(462, 244));
 
-        confirmBtn.setBackground(new java.awt.Color(238, 105, 131));
-        confirmBtn.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 11)); // NOI18N
-        confirmBtn.setText("Confirm");
-        confirmBtn.setToolTipText("");
-        confirmBtn.setPreferredSize(new java.awt.Dimension(75, 35));
-
-        Savings.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 18)); // NOI18N
-        Savings.setText("jTextField1");
-        Savings.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        Savings.addActionListener(new java.awt.event.ActionListener() {
+        Dconfirm.setBackground(new java.awt.Color(238, 105, 131));
+        Dconfirm.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 11)); // NOI18N
+        Dconfirm.setText("Confirm");
+        Dconfirm.setToolTipText("");
+        Dconfirm.setPreferredSize(new java.awt.Dimension(75, 35));
+        Dconfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SavingsActionPerformed(evt);
+                DconfirmActionPerformed(evt);
+            }
+        });
+
+        deposit.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 18)); // NOI18N
+        deposit.setText("0.00");
+        deposit.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        deposit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                depositActionPerformed(evt);
             }
         });
 
@@ -308,9 +313,9 @@ public class deposit extends javax.swing.JFrame  {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(confirmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Dconfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Savings, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(deposit, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(108, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -320,10 +325,10 @@ public class deposit extends javax.swing.JFrame  {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Savings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deposit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(29, 29, 29)
-                .addComponent(confirmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Dconfirm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(56, Short.MAX_VALUE))
         );
 
@@ -411,7 +416,7 @@ public class deposit extends javax.swing.JFrame  {
     }//GEN-LAST:event_savingsActionPerformed
 
     private void withdrawTabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_withdrawTabActionPerformed
-        widthraw with = new widthraw();
+        widthraw with = new widthraw(accId);
         this.setVisible(false);
         with.setVisible(true);
     }//GEN-LAST:event_withdrawTabActionPerformed
@@ -420,15 +425,23 @@ public class deposit extends javax.swing.JFrame  {
         // TODO add your handling code here:
     }//GEN-LAST:event_depositTabActionPerformed
 
-    private void SavingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SavingsActionPerformed
-        
-    }//GEN-LAST:event_SavingsActionPerformed
+    private void depositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositActionPerformed
+        deposit.setText("");
+    }//GEN-LAST:event_depositActionPerformed
 
     private void transferTabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferTabActionPerformed
         transfer trans = new transfer();
         this.setVisible(false);
         trans.setVisible(true);
     }//GEN-LAST:event_transferTabActionPerformed
+
+    private void DconfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DconfirmActionPerformed
+        cdb cdb = new cdb();
+        String Ssavings = deposit.getText();
+        double newSavings = Double.parseDouble(Ssavings.trim());
+        cdb.setSavingsDeposit(accId, newSavings);
+        deposit.setText("0.00");
+    }//GEN-LAST:event_DconfirmActionPerformed
 
     /**
      * @param args the command line arguments
@@ -444,9 +457,9 @@ public class deposit extends javax.swing.JFrame  {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Savings;
+    private javax.swing.JButton Dconfirm;
     private javax.swing.JPanel buttonsPanel;
-    private javax.swing.JButton confirmBtn;
+    private javax.swing.JTextField deposit;
     private javax.swing.JButton depositTab;
     private javax.swing.JButton interbankBtn;
     private javax.swing.JButton jButton1;
