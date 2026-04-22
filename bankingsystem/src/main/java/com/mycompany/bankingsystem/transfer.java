@@ -10,11 +10,13 @@ package com.mycompany.bankingsystem;
  */
 public class transfer extends javax.swing.JFrame {
 
-    /**
-     * Creates new form transfer
-     */
+    private int accId;
     public transfer() {
         initComponents();
+    }
+    public transfer(int id) {
+        initComponents();
+        accId = id;
     }
 
     /**
@@ -44,9 +46,9 @@ public class transfer extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         confirmBtn2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        Tid = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        Tamount = new javax.swing.JTextField();
 
         confirmBtn1.setBackground(new java.awt.Color(238, 105, 131));
         confirmBtn1.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 11)); // NOI18N
@@ -228,24 +230,23 @@ public class transfer extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
         jLabel3.setText("Account No.");
 
-        jTextField2.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 18)); // NOI18N
-        jTextField2.setText("jTextField1");
-        jTextField2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        Tid.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 18)); // NOI18N
+        Tid.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Tid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                TidActionPerformed(evt);
             }
         });
 
         jLabel4.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
         jLabel4.setText("Enter Amount");
 
-        jTextField3.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 18)); // NOI18N
-        jTextField3.setText("jTextField1");
-        jTextField3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        Tamount.setFont(new java.awt.Font("Microsoft Sans Serif", 0, 18)); // NOI18N
+        Tamount.setText("0.00");
+        Tamount.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Tamount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                TamountActionPerformed(evt);
             }
         });
 
@@ -267,8 +268,8 @@ public class transfer extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Tid)
+                            .addComponent(Tamount, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(178, 178, 178)
                         .addComponent(confirmBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -282,10 +283,10 @@ public class transfer extends javax.swing.JFrame {
                 .addGap(59, 59, 59)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Tid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Tamount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(55, 55, 55)
                 .addComponent(confirmBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -351,19 +352,19 @@ public class transfer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void depositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositActionPerformed
-        deposit userDash = new deposit();
+        deposit userDash = new deposit(accId);
         this.setVisible(false);
         userDash.setVisible(true);
     }//GEN-LAST:event_depositActionPerformed
 
     private void withdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_withdrawActionPerformed
-        widthraw with = new widthraw();
+        widthraw with = new widthraw(accId);
         this.setVisible(false);
         with.setVisible(true);
     }//GEN-LAST:event_withdrawActionPerformed
 
     private void transferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferActionPerformed
-        transfer trans = new transfer();
+        transfer trans = new transfer(accId);
         trans.setLocationRelativeTo(null);
         this.setVisible(false);
         trans.setVisible(true);
@@ -388,23 +389,33 @@ public class transfer extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_logoutActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void TidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TidActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_TidActionPerformed
 
     private void confirmBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtn2ActionPerformed
-        // TODO add your handling code here:
+        cdb cdb = new cdb();
+        String amount = Tamount.getText();
+        double transferAmount = Double.parseDouble(amount.trim());
+        
+        String id = Tid.getText();
+        int transferId = Integer.parseInt(id.trim());
+        
+        cdb.Transfer(accId,transferId, transferAmount);
+        Tamount.setText("0.00");
+        Tid.setText("");
+        
     }//GEN-LAST:event_confirmBtn2ActionPerformed
 
     private void savings3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savings3ActionPerformed
-        sbalance sbal = new sbalance();
+        sbalance sbal = new sbalance(accId);
         this.setVisible(false);
         sbal.setVisible(true);
     }//GEN-LAST:event_savings3ActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void TamountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TamountActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_TamountActionPerformed
 
     /**
      * @param args the command line arguments
@@ -443,6 +454,8 @@ public class transfer extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Tamount;
+    private javax.swing.JTextField Tid;
     private javax.swing.JPanel buttonsPanel;
     private javax.swing.JButton confirmBtn1;
     private javax.swing.JButton confirmBtn2;
@@ -453,8 +466,6 @@ public class transfer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JButton loan;
     private javax.swing.JButton logout;
     private javax.swing.JPanel mainPanel;

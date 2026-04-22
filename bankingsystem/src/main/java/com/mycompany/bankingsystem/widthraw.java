@@ -362,6 +362,7 @@ public class widthraw extends javax.swing.JFrame {
 
     private void depositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_depositActionPerformed
         deposit userDash = new deposit(accId);
+        userDash.setLocationRelativeTo(this);
         this.setVisible(false);
         userDash.setVisible(true);
     }//GEN-LAST:event_depositActionPerformed
@@ -374,7 +375,7 @@ public class widthraw extends javax.swing.JFrame {
 
     private void transferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferActionPerformed
         transfer trans = new transfer();
-        trans.setVisible(false);
+        this.setVisible(false);
         trans.setVisible(true);
     }//GEN-LAST:event_transferActionPerformed
 
@@ -382,7 +383,7 @@ public class widthraw extends javax.swing.JFrame {
         loan loan = new loan();
         loan.setLocationRelativeTo(null);
         loan.setVisible(true);
-        this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_loanActionPerformed
 
     private void transacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transacActionPerformed

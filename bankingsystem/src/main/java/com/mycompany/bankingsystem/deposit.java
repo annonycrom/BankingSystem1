@@ -435,7 +435,7 @@ public class deposit extends javax.swing.JFrame  {
     }//GEN-LAST:event_depositActionPerformed
 
     private void transferTabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferTabActionPerformed
-       transfer trans = new transfer();
+       transfer trans = new transfer(accId);
         trans.setLocationRelativeTo(null);
         this.setVisible(false);
         trans.setVisible(true);

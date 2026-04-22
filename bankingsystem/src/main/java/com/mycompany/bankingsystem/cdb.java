@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import javax.swing.*;
 
 public class cdb {
-    
+    int userId;
     public double getSavings(int accID) {
         double realSavings = 0.0;
         
@@ -112,7 +112,60 @@ public class cdb {
         
   
     }
-    
+    public void Transfer(int userId,int accID,double amount) {
+        double oldSavings1 = 0.0;
+        double oldSavings2 = 0.0;
+        
+        String user = "root";
+        String pass = "Alhyohan";
+        String url = "jdbc:mysql://localhost:3306/bankingDb";
+        
+        try(Connection conn = DriverManager.getConnection(url,user,pass)){
+            String old1 = "select* from bankingAccounts";
+            PreparedStatement stmt1 = conn.prepareStatement(old1);
+            ResultSet rs1 = stmt1.executeQuery();
+            while(rs1.next()){
+                int id = rs1.getInt("accId");
+                double savings = rs1.getDouble("sBalance");
+                if(userId == id){
+                    oldSavings1 = savings;
+                }
+            }
+            
+            String sql1 = "update bankingAccounts set sBalance = ? where accId=?";
+            PreparedStatement pstmt1 = conn.prepareStatement(sql1);
+            pstmt1.setDouble(1,oldSavings1 - amount);
+            pstmt1.setInt(2,userId);
+            int rowsAffected = pstmt1.executeUpdate();
+            //////////////////////////////////////////////////////
+            PreparedStatement stmt2 = conn.prepareStatement(old1);
+            ResultSet rs2 = stmt2.executeQuery();
+            while(rs2.next()){
+                int id = rs2.getInt("accId");
+                double savings = rs2.getDouble("sBalance");
+                if(accID == id){
+                    oldSavings2 = savings;
+                }
+            }
+            
+            String sql2 = "update bankingAccounts set sBalance = ? where accId=?";
+            PreparedStatement pstmt2 = conn.prepareStatement(sql2);
+            pstmt2.setDouble(1,oldSavings2+ amount);
+            pstmt2.setInt(2,accID);
+            
+            int totalAffected = pstmt2.executeUpdate() + rowsAffected;
+            
+            
+            if(rowsAffected>0){
+                JOptionPane.showMessageDialog(null,"TRANSFER SUCCESSFUL");
+            }
+            
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+  
+    }
     
     
     
