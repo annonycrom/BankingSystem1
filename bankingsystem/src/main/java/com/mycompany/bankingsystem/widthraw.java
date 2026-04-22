@@ -374,7 +374,7 @@ public class widthraw extends javax.swing.JFrame {
     }//GEN-LAST:event_withdrawActionPerformed
 
     private void transferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transferActionPerformed
-        transfer trans = new transfer();
+        transfer trans = new transfer(accId);
         this.setVisible(false);
         trans.setVisible(true);
     }//GEN-LAST:event_transferActionPerformed
